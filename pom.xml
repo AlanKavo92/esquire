@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.esquire.pypf</groupId>
+    <artifactId>eSQuireOnline1002</artifactId>
+    <packaging>rpm</packaging>
+    <version>1.0</version>
+    <name>eSQuire Online</name>
+
+    <properties>
+        <rpm-base>opt</rpm-base>
+        <rpm-path>esquire</rpm-path>
+        <base-dir>pypf</base-dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <version>2.1.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <license>GPL (c) 2005, SWWDC</license>
+                    <distribution>eSQuireDistro</distribution>
+                    <group>eSQuireDevel</group>
+                    <requires>
+                    </requires>
+                    <mappings>
+                        <mapping>
+                            <directory>/${rpm-base}/${rpm-path}/${base-dir}/esq.online</directory>
+                            <filemode>744</filemode>
+                            <username>root</username>
+                            <groupname>root</groupname>
+                            <configuration>false</configuration>
+                            <directoryIncluded>true</directoryIncluded>
+                            <recurseDirectories>true</recurseDirectories>
+                            <sources>
+                                <source>
+                                    <location>src/python</location>
+                                </source>
+                            </sources>
+                        </mapping>
+                    </mappings>
+                    <preinstallScriptlet>
+                        <script>/bin/logger "installing core rpm"</script>
+                    </preinstallScriptlet>
+                    <postinstallScriptlet>
+                        <script>/bin/logger "uninstalling core rpm"</script>
+                    </postinstallScriptlet>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
