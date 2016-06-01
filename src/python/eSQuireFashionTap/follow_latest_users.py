@@ -9,4 +9,4 @@ login(driver, 'esquire', 'equinox')
 
 while True:
     random.shuffle(top__users)
-    follow_latest_users(driver, 100)
+    follow_latest_users(driver, 5000)
